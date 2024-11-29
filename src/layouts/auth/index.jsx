@@ -1,73 +1,25 @@
-import styled from "styled-components";
 import { Outlet, useNavigate } from "react-router-dom";
+import Logo from "../../assets/Logo.png"
 import { useEffect } from "react";
-import { devices } from "../../utils/media";
 
 const AuthLayout = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    navigate("/home");
+    navigate("/login");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <PageContainer>
-      <ContentContainer>
+    <div className="flex items-center justify-center h-screen w-screen bg-heroThree bg-cover text-gray-700">
+      <div className="flex flex-col items-center justify-center w-full max-w-lg p-6 rounded-2xl shadow-lg bg-white">
+        <div className="flex flex-col items-center gap-4">
+          <img src={Logo} className="h-[120px]" />
+        </div>
         <Outlet />
-      </ContentContainer>
-
-      <ImageWrapper>
-        
-      </ImageWrapper>
-    </PageContainer>
+      </div>
+    </div>
   );
 };
 
 export default AuthLayout;
-
-const PageContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 100vh;
-  width: 100vw;
-  background-color: #f8f8f8;
-`;
-
-const ContentContainer = styled.div`
-  flex: 1;
-  flex-grow: 1;
-  max-width: 588px;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  justify-items: center;
-  align-items: center;
-  gap: 2rem;
-
-  @media ${devices.tablet} {
-    & > svg {
-      width: 130px;
-    }
-  }
-`;
-
-const ImageWrapper = styled.div`
-  width: 50%;
-  height: 100%;
-  max-width: 705px;
-  position: sticky;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  & > img {
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-  }
-
-  @media ${devices.tablet} {
-    display: none;
-  }
-`;
